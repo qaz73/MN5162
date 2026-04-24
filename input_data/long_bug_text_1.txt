@@ -1,0 +1,49 @@
+https://github.com/microsoft/vscode/issues/293405
+
+It has been nearly three years since the release of the Dark/Light Modern themes, and the developer tools landscape has evolved significantly. With the rise of AI adoption and a rapidly changing ecosystem, it is the perfect time to refresh the UI—helping VS Code stand out while delivering an improved developer experience.
+
+The Goal: Focus
+
+The core philosophy behind these new themes is simple: Focus.
+We believe a cleaner environment helps developers maintain their flow state for longer. To achieve this, we are experimenting with several key design pillars:
+
+Reduced Palette: Minimizing visual noise by stripping away unnecessary colors.
+
+Strategic Accents: Using accent colors sparingly to highlight important actions only when relevant.
+
+Layered UI: distinct visual separation between three key areas:
+
+Workbench (Editor area)
+Tools (Chat, Terminal, Explorer)
+Actions (Quick Pick, Notifications, Menus)
+Depth & Lightness: Utilizing transparency, blur, and shadows to maintain visual context without clutter.
+
+Try it Out
+
+We have a first WIP iteration of these themes - VS Code Dark and VS Code Light - available starting in v1.109, and will be continually updating them in Insiders. We welcome your feedback!
+
+Please open issues for bugs or suggestions and attach the 2026-themes label.
+
+
+Comment 1
+
+i am still unable to adjust to the new colors from the dark theme, they seem off to me.
+every time i look at the red-ish colored text my brain looks if there are errors
+the ghost-ish colored variables/text often give vibe as unused variables
+still not able to get comfortable with the green colored keys in the key value pairs (JSON for instance)
+
+the only thing i liked about the new theme color is the comments now appearing as grayed out, thats the only improvement i could feel.
+
+i initially wanted to use this theme for the Glass component feel, apparently that feature is not happening :|
+
+Comment 2
+the lack of semantic tokens for go in this theme is bad. i had to turn it off to get the keywords to be red .. if it is on, it's two different shades of purple and clashes with the functions/method colors which are purple.
+
+"gopls": {
+"ui.semanticTokens": false,
+},
+
+I don't really mind the red for keywords and i get it's trying to be like the github theme (which i do like).. but it feels rushed for some languages, and just doesnt look good at all..
+
+plus, the removal of some colors is not great, especially when those keywords do indeed mean something. switched back to dark modern (or even better, Pitch Black)
+
