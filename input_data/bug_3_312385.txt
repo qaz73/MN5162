@@ -1,0 +1,92 @@
+https://github.com/microsoft/vscode/issues/312385
+Type: Bug
+
+i want to use copilot on github and i need to sign in ,its giving me problem when i want to sign in ,kindly help
+
+Extension version: 0.44.2
+VS Code version: Code 1.116.0 (560a9db, 2026-04-15T00:28:13Z)
+OS version: Windows_NT x64 10.0.19045
+Modes:
+
+Logs
+Error: Error: GitHubLoginFailed
+	at Are._authShowWarnings (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:18537)
+	at async Are.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:16255)
+	at async cge.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1396:7788)
+	at async DL.waitForChatEnabled (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1500:2999)
+	at async DL.run (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1500:2887)
+	at async Oee.askToUpgradeAuthPermissions (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1500:2364): Failed to get copilot token
+Error: You are not signed in to GitHub. Please sign in to use Copilot.
+Info: [context keys] Setting context key: github.copilot.interactiveSession.gitHubLoginFailed
+Warning: [LanguageModelAccess] LanguageModel/Embeddings are not available without auth token
+Error: Error: GitHubLoginFailed
+	at Are._authShowWarnings (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:18537)
+	at async Are.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:16255)
+	at async cge.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1396:7788)
+	at async ine._getToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1688:8792)
+	at async r (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1688:8256)
+	at async ine._registerEmbeddings (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1688:8753)
+	at async Promise.all (index 1)
+	at async Promise.allSettled (index 1)
+	at async l9.waitForActivationBlockers (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1162:7696)
+	at async c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1162:8470
+	at async $hn (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1162:8338)
+	at async wb._activate (file:///c:/Users/hp/AppData/Local/Programs/Microsoft%20VS%20Code/560a9dba96/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:15965)
+	at async wb._waitForDepsThenActivate (file:///c:/Users/hp/AppData/Local/Programs/Microsoft%20VS%20Code/560a9dba96/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:15907)
+	at async wb._initialize (file:///c:/Users/hp/AppData/Local/Programs/Microsoft%20VS%20Code/560a9dba96/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:15274)
+Debug: CopilotToken state changed, firing event.
+Info: AuthenticationService: firing onDidAuthenticationChange from handleAuthChangeEvent. Has token: false
+Info: copilot token sku: 
+Info: ConversationFeature: onDidAuthenticationChange has token: false
+Debug: [context keys] Updating context keys.
+Debug: Getting CopilotToken (force: undefined)...
+Debug: Getting CopilotToken (force: undefined)...
+Debug: Getting CopilotToken (force: undefined)...
+Debug: Getting CopilotToken (force: undefined)...
+Debug: Getting CopilotToken (force: undefined)...
+Debug: Getting CopilotToken (force: undefined)...
+Debug: Finished handling auth change event.
+Info: activationBlocker from 'conversationFeature' took for 1790ms
+Info: activationBlocker from 'languageModelAccess' took for 1748ms
+Error: [CopilotCLISession] Failed to fetch models: Error: Failed to get token for auth info
+Error: [ClaudeCodeModels] Failed to fetch models: Error: GitHubLoginFailed
+Debug: Getting CopilotToken (force: undefined)...
+Debug: [CopilotCLI] Found 0 JSONL sessions and 0 legacy sessions
+Debug: [CopilotCLI] Found 0 JSONL sessions and 0 legacy sessions
+Warning: GitHub login failed
+Debug: Getting CopilotToken (force: undefined) threw error: Error: GitHubLoginFailed
+Debug: Getting CopilotToken (force: undefined) threw error: Error: GitHubLoginFailed
+Debug: Getting CopilotToken (force: undefined) threw error: Error: GitHubLoginFailed
+Debug: Getting CopilotToken (force: undefined) threw error: Error: GitHubLoginFailed
+Debug: Getting CopilotToken (force: undefined) threw error: Error: GitHubLoginFailed
+Debug: Getting CopilotToken (force: undefined) threw error: Error: GitHubLoginFailed
+Debug: Getting CopilotToken (force: undefined) threw error: Error: GitHubLoginFailed
+Error: You are not signed in to GitHub. Please sign in to use Copilot.
+Warning: [LanguageModelAccess] LanguageModel/Embeddings are not available without auth token
+Error: Error: GitHubLoginFailed
+	at Are._authShowWarnings (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:18537)
+	at async Are.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:16255)
+	at async cge.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1396:7788)
+	at async ine._getToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1688:8792)
+	at async r (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1688:8256)
+Warning: [LanguageModelAccess] LanguageModel/Embeddings are not available without auth token
+Error: Error: GitHubLoginFailed
+	at Are._authShowWarnings (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:18537)
+	at async Are.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1721:16255)
+	at async cge.getCopilotToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1396:7788)
+	at async ine._getToken (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1688:8792)
+	at async ine._provideLanguageModelChatInfo (c:\Users\hp\.vscode\extensions\github.copilot-chat-0.44.2\dist\extension.js:1688:4579)
+	at async kd.$provideLanguageModelChatInfo (file:///c:/Users/hp/AppData/Local/Programs/Microsoft%20VS%20Code/560a9dba96/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:503:34041)
+Debug: [Power] CPU speed limit changed: 100% 
+Debug: Send fetcher telemetry: This window won.
+Debug: Fetcher telemetry probe: node-fetch Status: 200 (1121ms)
+Debug: Fetcher telemetry probe: electron-fetch Status: 200 (209ms)
+Debug: Fetcher telemetry probe: node-http Status: 200 (853ms)
+Debug: Fetcher telemetry: Succeeded in 353ms using node-fetch with status 200 ().
+Debug: Fetcher telemetry: Succeeded in 218ms using electron-fetch with status 200 ().
+Debug: Fetcher telemetry: Succeeded in 902ms using node-http with status 200 (OK).
+Debug: [context keys] Window state change. Needs offline check: false, active: true, focused: false.
+Debug: [context keys] Window state change. Needs offline check: false, active: true, focused: true.
+Debug: [CopilotCLI] Found 0 JSONL sessions and 0 legacy sessions
+Debug: [context keys] Window state change. Needs offline check: false, active: false, focused: true.
+Debug: [context keys] Window state change. Needs offline check: false, active: true, focused: true.

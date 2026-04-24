@@ -1,0 +1,20 @@
+https://github.com/microsoft/vscode/issues/312365
+
+Copilot Chat Extension Version: It just says "Built-in" now, and I don't see a version. Changelog says 0.41 but that's a month old.
+Version: 1.118.0-insider
+Commit: 7f677cd
+Date: 2026-04-24T07:39:11Z
+Electron: 39.8.8
+ElectronBuildId: 13870025
+Chromium: 142.0.7444.265
+Node.js: 22.22.1
+V8: 14.2.231.22-electron.0
+OS: Linux x64 6.8.0-110-generic
+
+Steps to Reproduce:
+
+Start from an existing chat.
+C-p "Open in Agents" RET
+Nothing happens, in Output window Main logs this line:
+2026-04-24 08:01:35.044 [warning] [launchSiblingApp] Could not resolve sibling app on this platform
+So this may be related to #311365, or an attempt to implement that. sway doesn't have a dock, but dmenu indeed doesn't list any binaries on the path with the name 'agents' or 'code-agents' or something.

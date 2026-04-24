@@ -1,0 +1,13 @@
+Link - https://github.com/microsoft/vscode/issues/312390
+
+Does this issue occur when all extensions are disabled?: Yes
+
+VS Code Version: 1.118.0-insiders
+OS Version: Windows 11 25R2
+Steps to Reproduce:
+
+Open VS Code Agents
+Ask some copilot-type work
+Observe that the "Thinking" content doesn't appear anymore
+Observe that you can't see any of the tool calls anymore, no "Editing file", nothing
+This makes the entire app a black box, impossible to know what's happening at all. A couple days ago it had all the information I could need, I could open any tool calls and see the inputs/outputs of it and clearly understand what the LLM was doing by reading its internal thinking. Now this is not usable and I have to switch to the CLI again.

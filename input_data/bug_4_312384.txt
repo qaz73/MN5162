@@ -1,0 +1,77 @@
+https://github.com/microsoft/vscode/issues/312384
+
+Problem
+
+In terminalbench evaluation runs, 7 tasks hung indefinitely (3600s timeout) because run_in_terminal never completed. All failed with X_AGENT_STILL_RESPONDING.
+
+Affected tasks
+
+Task	Run	What happened
+csv-to-parquet	24890545491	Agent ran python3 (bare REPL), tool blocked forever
+build-initramfs-qemu	24890545491	Command hung, no shell integration sequences
+cobol-modernization	24890545491	Long compilation, shell integration failed
+chess-best-move	24890545491	Shell integration failure, tool never returned
+crack-7z-hash	24890545491	Multiple commands, shell integration broke
+csv-to-parquet	24890581356	Same as above
+build-initramfs-qemu	24890581356	Same as above
+Root cause
+
+The hang originates in trackIdleOnPrompt() (executeStrategy.ts:162-225), which is used as a fallback in the Promise.race in both RichExecuteStrategy and BasicExecuteStrategy.
+
+The bug: When no terminal data events arrive at all, trackIdleOnPrompt blocks forever because neither scheduler is ever triggered:
+
+// Created but NOT scheduled initially
+const scheduler = new RunOnceScheduler(() => {
+    idleOnPrompt.complete();
+}, idleDurationMs);
+
+// Created but NOT scheduled initially  
+const promptFallbackScheduler = new RunOnceScheduler(() => {
+    state = TerminalState.PromptAfterExecuting;
+    scheduler.schedule();
+}, promptFallbackMs ?? 1000);
+
+// The ONLY entry point to schedule either timer
+onData(e => {
+    // If no data events ever fire, this never runs
+    if (state === PromptAfterExecuting) {
+        scheduler.schedule();
+    } else {
+        if (state === Initial || Prompt) {
+            promptFallbackScheduler.schedule(); // only scheduled here!
+        }
+    }
+});
+The sequence that causes the hang:
+
+RichExecuteStrategy.execute() is selected (shell integration was expected)
+Shell integration fails: "Shell integration failed to add capabilities within 10 seconds"
+onCommandFinished never fires (command detection never initialized)
+trackIdleOnPrompt is the last fallback in Promise.race
+The command either hangs (interactive REPL) or finishes silently (no output)
+No onData events fire → neither scheduler is ever started → promise never resolves
+run_in_terminal blocks forever → agent cant make next LLM call → 3600s eval timeout
+Fix
+
+Add a separate initial fallback timer (10s) that fires only when no data events arrive at all. This is long enough to avoid false early completion for slow-starting commands (e.g. sleep 5), but prevents the infinite hang. Once any data arrives, the initial fallback is canceled and the existing data-driven promptFallbackScheduler (1s) takes over.
+
+const initialFallbackScheduler = new RunOnceScheduler(() => {
+    if (state === Executing || state === PromptAfterExecuting) {
+        return;
+    }
+    state = TerminalState.PromptAfterExecuting;
+    scheduler.schedule();
+}, 10_000);
+initialFallbackScheduler.schedule();
+
+onData(e => {
+    // Once any data arrives, cancel the initial fallback
+    initialFallbackScheduler.cancel();
+    // ... existing logic unchanged
+});
+Behavior summary:
+
+Shell integration works → no change (C sequence sets Executing state, initial fallback guard exits early)
+Shell integration broken + data flowing → no change (onData cancels initial fallback, existing debounce logic handles idle detection)
+Shell integration broken + no data at all → resolves after ~11s instead of hanging forever
+This fix applies to both RichExecuteStrategy and BasicExecuteStrategy since both use trackIdleOnPrompt.
