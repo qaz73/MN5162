@@ -1,0 +1,9 @@
+Hi,
+
+I am trying to use your banking application to do an intraday transfer to Germany.  The system is allowing me enter a valid IBAN number but when I click transfer, the transfer does not complete.  Instead it reports that the BIC code is incorrect.  However that does not make sense as I'm not using a BIC code to do the transfer.  I am using the IBAN which the system has previously verified as correct.  Can you address this urgently as I need to make the payment by 3pm today.
+
+Please telephone me if you need any additional information regarding this request.
+
+Regards,
+
+Santa.
