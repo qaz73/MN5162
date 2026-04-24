@@ -1,0 +1,28 @@
+Hi team,
+
+We’ve been experiencing an intermittent issue with the order submission workflow in the web application since the latest deployment (v2.3.1, released last Thursday).
+
+Several users have reported that after filling in the order form and clicking the “Submit” button, the application appears to hang for a few seconds and then either:
+
+1. Displays a generic “Something went wrong” error message, or
+2. Refreshes the page without saving the order.
+
+This seems to occur more frequently when:
+- The user includes special characters (e.g. #, %, &) in the address field
+- The session has been active for more than ~20 minutes
+- The browser is Safari (though we’ve seen at least one report on Chrome)
+
+We were able to reproduce the issue internally twice, but not consistently. Logs show a 500 error being returned from the /api/orders endpoint, with a null pointer exception in the validation module.
+
+Impact:
+- Users are unable to complete purchases
+- Potential revenue loss
+- Increased support tickets
+
+Workarounds attempted:
+- Clearing cache (no effect)
+- Using a different browser (partially effective)
+
+Please investigate as this may be affecting a significant portion of users.
+
+Thanks.
